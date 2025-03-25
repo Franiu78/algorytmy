@@ -26,7 +26,7 @@ void babelkowe_lepsze(std::vector<int>& arr) {
 
             }
             for (int num : arr) cout << num << " ";
-            cout << endl;
+            cout << endl << "aa";
         }
     }
 }
