@@ -1,19 +1,39 @@
 ﻿#include <iostream>
 #include <vector>
+#include <cstdlib> // do generowania losowych liczb 
+#include <chrono> // do mierzenia czasu
 #include "sorting.h"
-
+using namespace std;
 int main() {
-    std::vector<int> arr = { 5, 3, 8, 1, 2 };
+    vector<int> arr;
+    vector<int> badane; 
 
+    // generuje liste 
+    int ilosc=50000;
+    for (int i = 0; i < ilosc; i++) {
+        badane.push_back(rand());
+        //cout << badane[i] << endl;
+    }
+
+    
+    arr = badane;
+    auto start = chrono::high_resolution_clock::now();
     babelkowe_klasyk(arr);
-    std::cout << "Bubble Sort wynik: ";
-    for (int num : arr) std::cout << num << " ";
-    std::cout << std::endl;
+    auto stop = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
+    cout << "Bubble Sort wynik: ";
+    //for (int num : arr) cout << num << " ";
+    cout << endl << duration.count() << " ms" << endl << endl;
+    
 
-    arr = { 5, 3, 8, 1, 2 };
+
+    arr = badane;
+    start = chrono::high_resolution_clock::now();
     babelkowe_lepsze(arr);
-    std::cout << "Bubble Sort wynik: ";
-    for (int num : arr) std::cout << num << " ";
-    std::cout << std::endl;
-    return 0;aaaa
+    stop = chrono::high_resolution_clock::now();
+    duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
+    cout << "Bubble Sort wynik: ";
+    //for (int num : arr) cout << num << " ";
+    cout << endl << duration.count() << " ms" << endl << endl;
+    return 0;
 }
