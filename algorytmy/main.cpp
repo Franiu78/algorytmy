@@ -83,14 +83,37 @@ int main() {
     }
     stop = chrono::high_resolution_clock::now();
     duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
-    cout << "scalanie wynik: ";
+    cout << "scalanie (rekurencyjne) wynik: ";
     //for (int num : arr) cout << num << " ";
     cout << endl << duration.count() << " ms" << endl << endl;
 
 
-    
+    start = chrono::high_resolution_clock::now();
+    //for (int i = 0; i < 100; i++) 
+    {
+        arr = badane;
+        sort_scalanie_iteracyjny(arr);
+    }
+    stop = chrono::high_resolution_clock::now();
+    duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
+    cout << "scalanie (iteracyjne) wynik: ";
+    //for (int num : arr) cout << num << " ";
+    cout << endl << duration.count() << " ms" << endl << endl;
 
     
+    start = chrono::high_resolution_clock::now();
+    //for (int i = 0; i < 100; i++)
+    {
+        arr = badane;
+        quicksort(arr, 0, arr.size() - 1);
+    }
+    stop = chrono::high_resolution_clock::now();
+    duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
+    cout << "quick sort wynik: ";
+    //for (int num : arr) cout << num << " ";
+    cout << endl << duration.count() << " ms" << endl << endl;
+    
+
     
     return 0;
 }

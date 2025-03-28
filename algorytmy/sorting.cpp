@@ -128,3 +128,42 @@ void sort_scalanie(vector<int>& arr, int poczatek, int koniec) // merge sort rek
         
     }
 }
+
+void sort_scalanie_iteracyjny(vector<int>& arr) 
+{
+    int n = arr.size();
+
+    // Stopniowo zwiêkszamy rozmiar podtablicy (1, 2, 4, 8...)
+    for (int rozmiar = 1; rozmiar < n; rozmiar *= 2) {
+        for (int poczatek = 0; poczatek < n - 1; poczatek += 2 * rozmiar)
+        { 
+            int srodek = poczatek + rozmiar - 1;
+            int koniec = min(poczatek + 2 * rozmiar - 1, n - 1);
+
+            if (srodek < koniec)    scal(arr, poczatek, srodek, koniec);
+        }
+    }
+}
+
+
+
+void quicksort(vector<int>& arr, int poczatek, int koniec) //  Quick Sort
+{
+    if (poczatek < koniec) {
+        int pivot = arr[koniec]; // Wybieramy pivot jako ostatni element
+        int i = poczatek - 1; // Indeks mniejszego elementu
+
+        for (int j = poczatek; j < koniec; j++) {
+            if (arr[j] < pivot) { // Jeœli element jest mniejszy ni¿ pivot
+                i++;
+                swap(arr[i], arr[j]);
+            }
+        }
+        swap(arr[i + 1], arr[koniec]); // Umieszczamy pivot na w³aœciwej pozycji
+
+        int pivot_miejsce = i + 1; // ZnajdŸ pivot
+
+        quicksort(arr, poczatek, pivot_miejsce - 1);  // Sortowanie lewej czêœci
+        quicksort(arr, pivot_miejsce + 1, koniec); // Sortowanie prawej czêœci
+    }
+}
