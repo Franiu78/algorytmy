@@ -31,33 +31,7 @@ int main() {
         //cout << badane[i] << endl;
     }
 
-    /*
     
-    auto start = chrono::high_resolution_clock::now();
-   // for (int i = 0; i < 100; i++) {
-        arr = badane;
-        babelkowe_klasyk(arr);
-  //  }
-    auto stop = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
-    cout << "Bubble Sort wynik: ";
-    //for (int num : arr) cout << num << " ";
-    cout << endl << duration.count() << " ms" << endl << endl;
-    
-
-
-    
-    start = chrono::high_resolution_clock::now();
-    //for (int i = 0; i < 100; i++) {
-        arr = badane;
-        babelkowe_lepsze(arr);
-    //}
-    stop = chrono::high_resolution_clock::now();
-    duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
-    cout << "Bubble Sort lepszy wynik: ";
-    //for (int num : arr) cout << num << " ";
-    cout << endl << duration.count() << " ms" << endl << endl;
-    */
 
     cout << "Tablica przed sortowaniem:" << endl;
    // printArray(badane);

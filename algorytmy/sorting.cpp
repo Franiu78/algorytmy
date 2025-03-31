@@ -66,7 +66,8 @@ void sort_kopcowanie(vector<int>& arr) //heap sort
 
     for (int i = n / 2 - 1; i >= 0; i--) 
     {
-        kopiec(arr, n, i); // max kopiec (z wszystkimi wartoœciami, wstêpne sortowanie) sprawdza wszystkich rodziców od najm³odszego prawego 
+        kopiec(arr, n, i); 
+        // max kopiec (z wszystkimi wartoœciami, wstêpne sortowanie) sprawdza wszystkich rodziców od najm³odszego prawego 
     }
 
     for (int i = n - 1; i > 0; i--)
