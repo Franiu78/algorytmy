@@ -1,8 +1,9 @@
 ﻿#include <iostream>
 #include <vector>
 #include <cstdlib> // do generowania losowych liczb 
-#include <chrono> // do mierzenia czasu
 #include "sorting.h"
+#include "generate.h"
+#include "test.h"
 
 using namespace std;
 
@@ -13,81 +14,61 @@ void printArray(const vector<int>& arr) {
 }
 
 int main() {
-    vector<int> arr;
-    vector<int> badane; 
+    vector<int> arr; 
+
+    
+    cout << endl << "1000" << endl;
+    generuj(arr, 1000);
+    test_heap(arr);
+    test_merge(arr);
+    test_merge_iter(arr);
+    test_quick(arr);
+    cout << endl << "10000" << endl;
+    generuj(arr, 10000);
+    test_heap(arr);
+    test_merge(arr);
+    test_merge_iter(arr);
+    test_quick(arr);
+    cout << endl << "50000" << endl;
+    generuj(arr, 50000);
+    test_heap(arr);
+    test_merge(arr);
+    test_merge_iter(arr);
+    test_quick(arr);
+    cout << endl << "100000" << endl;
+    generuj(arr, 100000);
+    test_heap(arr);
+    test_merge(arr);
+    test_merge_iter(arr);
+    test_quick(arr);
+    cout << endl << "500000" << endl;
+    generuj(arr, 500000);
+    test_heap(arr);
+    test_merge(arr);
+    test_merge_iter(arr);
+    test_quick(arr);
+    cout << "1000000" << endl;
+    generuj(arr, 1000000);
+    test_heap(arr);
+    test_merge(arr);
+    test_merge_iter(arr);
+    test_quick(arr);
+
+    
 
     
     
 
-       
-
-        
-
-    
-    // generuje liste 
-    int ilosc=1000000;
-    for (int i = 0; i < ilosc; i++) {
-        badane.push_back(rand());
-        //cout << badane[i] << endl;
-    }
-
     
 
-    cout << "Tablica przed sortowaniem:" << endl;
-   // printArray(badane);
-    
-    auto start = chrono::high_resolution_clock::now();
-    //for (int i = 0; i < 100; i++) 
-    {
-        arr = badane;
-        sort_kopcowanie(arr);
-    }
-    auto stop = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
-    cout << "kopiec wynik: ";
-    //for (int num : arr) cout << num << " ";
-    cout << endl << duration.count()  << " ms" << endl << endl;
+   
+   
     
     
-    start = chrono::high_resolution_clock::now();
-    //for (int i = 0; i < 100; i++) 
-    {
-        arr = badane;
-        sort_scalanie(arr, 0, arr.size() - 1);
-    }
-    stop = chrono::high_resolution_clock::now();
-    duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
-    cout << "scalanie (rekurencyjne) wynik: ";
-    //for (int num : arr) cout << num << " ";
-    cout << endl << duration.count() << " ms" << endl << endl;
-
-
-    start = chrono::high_resolution_clock::now();
-    //for (int i = 0; i < 100; i++) 
-    {
-        arr = badane;
-        sort_scalanie_iteracyjny(arr);
-    }
-    stop = chrono::high_resolution_clock::now();
-    duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
-    cout << "scalanie (iteracyjne) wynik: ";
-    //for (int num : arr) cout << num << " ";
-    cout << endl << duration.count() << " ms" << endl << endl;
 
     
-    start = chrono::high_resolution_clock::now();
-    //for (int i = 0; i < 100; i++)
-    {
-        arr = badane;
-        quicksort(arr, 0, arr.size() - 1);
-    }
-    stop = chrono::high_resolution_clock::now();
-    duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
-    cout << "quick sort wynik: ";
-    //for (int num : arr) cout << num << " ";
-    cout << endl << duration.count() << " ms" << endl << endl;
     
-
+    
     
     return 0;
 }

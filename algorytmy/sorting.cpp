@@ -1,6 +1,7 @@
 #include "sorting.h"
 #include <iostream>
 
+
 using namespace std;
 
 void babelkowe_klasyk(vector<int>& arr) 
@@ -119,15 +120,15 @@ void scal(vector<int>& arr, int poczatek, int srodek, int koniec)
 
 void sort_scalanie(vector<int>& arr, int poczatek, int koniec) // merge sort rekurencyjny
 {
-    if (poczatek < koniec) 
-    {
+    if (arr.empty() || poczatek >= koniec)
+        return;
         int srodek = poczatek + (koniec - poczatek) / 2;
 
         sort_scalanie(arr, poczatek, srodek);      // Sortowanie lewej po³owy
         sort_scalanie(arr, srodek + 1, koniec); // Sortowanie prawej po³owy
         scal(arr, poczatek, srodek, koniec);   // Scalanie dwóch po³ówek
         
-    }
+    
 }
 
 void sort_scalanie_iteracyjny(vector<int>& arr) 
@@ -146,25 +147,44 @@ void sort_scalanie_iteracyjny(vector<int>& arr)
     }
 }
 
+int medianaztrzech(vector<int>& arr, int poczatek, int koniec) {
+    int srodek = poczatek + (koniec - poczatek) / 2;
 
+    if (arr[poczatek] > arr[srodek])
+        swap(arr[poczatek], arr[srodek]);
+    if (arr[poczatek] > arr[koniec])
+        swap(arr[poczatek], arr[koniec]);
+    if (arr[srodek] > arr[koniec])
+        swap(arr[srodek], arr[koniec]);
 
-void quicksort(vector<int>& arr, int poczatek, int koniec) //  Quick Sort
-{
-    if (poczatek < koniec) {
-        int pivot = arr[koniec]; // Wybieramy pivot jako ostatni element
-        int i = poczatek - 1; // Indeks mniejszego elementu
-
-        for (int j = poczatek; j < koniec; j++) {
-            if (arr[j] < pivot) { // Jeœli element jest mniejszy ni¿ pivot
-                i++;
-                swap(arr[i], arr[j]);
-            }
-        }
-        swap(arr[i + 1], arr[koniec]); // Umieszczamy pivot na w³aœciwej pozycji
-
-        int pivot_miejsce = i + 1; // ZnajdŸ pivot
-
-        quicksort(arr, poczatek, pivot_miejsce - 1);  // Sortowanie lewej czêœci
-        quicksort(arr, pivot_miejsce + 1, koniec); // Sortowanie prawej czêœci
-    }
+    // Mediana l¹duje na pozycji koniec - 1 (pivot)
+    swap(arr[srodek], arr[koniec - 1]);
+    return arr[koniec - 1];
 }
+
+void quicksort(vector<int>& arr, int poczatek, int koniec) {
+    if (poczatek + 1 >= koniec)
+        return;
+
+    int pivot = medianaztrzech(arr, poczatek, koniec);
+    int i = poczatek;
+    int j = koniec - 1;
+
+    while (true) {
+        while (arr[++i] < pivot) {}
+        while (arr[--j] > pivot) {}
+        if (i < j)
+            swap(arr[i], arr[j]);
+        else
+            break;
+    }
+
+    swap(arr[i], arr[koniec - 1]);
+
+    quicksort(arr, poczatek, i - 1);
+    quicksort(arr, i + 1, koniec);
+}
+
+
+
+
