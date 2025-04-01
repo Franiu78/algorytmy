@@ -117,7 +117,7 @@ void pom_quick(vector<int>& arr)
     for (int i = 0; i < 100; i++)
     {
         bad = arr;
-        quicksort(bad, 0, bad.size() - 1);
+        quicksort(bad, 0, bad.size()-1);
     }
     auto stop = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);

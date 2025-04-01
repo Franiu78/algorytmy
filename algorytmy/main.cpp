@@ -16,7 +16,7 @@ void printArray(const vector<int>& arr) {
 int main() {
     vector<int> arr; 
 
-    
+        
     cout << endl << "1000" << endl;
     generuj(arr, 1000);
     test_heap(arr);

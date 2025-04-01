@@ -120,8 +120,7 @@ void scal(vector<int>& arr, int poczatek, int srodek, int koniec)
 
 void sort_scalanie(vector<int>& arr, int poczatek, int koniec) // merge sort rekurencyjny
 {
-    if (arr.empty() || poczatek >= koniec)
-        return;
+    if (arr.empty() || poczatek >= koniec)  return;
         int srodek = poczatek + (koniec - poczatek) / 2;
 
         sort_scalanie(arr, poczatek, srodek);      // Sortowanie lewej po³owy
@@ -136,7 +135,8 @@ void sort_scalanie_iteracyjny(vector<int>& arr)
     int n = arr.size();
 
     // Stopniowo zwiêkszamy rozmiar podtablicy (1, 2, 4, 8...)
-    for (int rozmiar = 1; rozmiar < n; rozmiar *= 2) {
+    for (int rozmiar = 1; rozmiar < n; rozmiar *= 2) 
+    {
         for (int poczatek = 0; poczatek < n - 1; poczatek += 2 * rozmiar)
         { 
             int srodek = poczatek + rozmiar - 1;
@@ -163,24 +163,20 @@ int medianaztrzech(vector<int>& arr, int poczatek, int koniec) {
 }
 
 void quicksort(vector<int>& arr, int poczatek, int koniec) {
-    if (poczatek + 1 >= koniec)
-        return;
-
+    if (poczatek + 1 >= koniec) return; // jeœli przedzia³ ma 0 lub 1 element, nie sortujemy
     int pivot = medianaztrzech(arr, poczatek, koniec);
     int i = poczatek;
     int j = koniec - 1;
 
+    // dziel tablicê na elementy mniejsze i wiêksze od pivota
     while (true) {
         while (arr[++i] < pivot) {}
         while (arr[--j] > pivot) {}
-        if (i < j)
-            swap(arr[i], arr[j]);
-        else
-            break;
+        if (i < j)  swap(arr[i], arr[j]); // zamieñ elementy po z³ej stronie
+        else  break;
     }
-
-    swap(arr[i], arr[koniec - 1]);
-
+    swap(arr[i], arr[koniec - 1]);// ustaw pivot w jego ostatecznym miejscu
+    // rekurencyjne sortowanie lewej i prawej czêœci
     quicksort(arr, poczatek, i - 1);
     quicksort(arr, i + 1, koniec);
 }
